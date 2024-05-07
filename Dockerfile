@@ -1,8 +1,8 @@
 FROM openjdk:11-bullseye
 
-LABEL maintainer="haxqer <haxqer666@gmail.com>" version="9.14.1"
+LABEL maintainer="haxqer <haxqer666@gmail.com>" version="9.15.2"
 
-ARG JIRA_VERSION=9.14.1
+ARG JIRA_VERSION=9.15.2
 # Production: jira-software jira-core
 ARG JIRA_PRODUCT=jira-software
 ARG AGENT_VERSION=1.3.3
@@ -13,7 +13,7 @@ ENV JIRA_USER=jira \
     JIRA_HOME=/var/jira \
     JIRA_INSTALL=/opt/jira \
     JVM_MINIMUM_MEMORY=1g \
-    JVM_MAXIMUM_MEMORY=3g \
+    JVM_MAXIMUM_MEMORY=6g \
     JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=2g' \
     AGENT_PATH=/var/agent \
     AGENT_FILENAME=atlassian-agent.jar
