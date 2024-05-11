@@ -5,7 +5,7 @@
 [README](README.md) | [中文文档](README_zh.md)
 
 
-+ Long Term Support Version: v9.12.7
++ Long Term Support Version: v9.12.8
 + Latest Version: v9.15.2
 + [The new way](https://github.com/haxqer/jira/tree/build-your-own) of use allows you to conveniently upgrade and modify parameters on your own, and it offers convenient support for HTTPS (thanks to [xsharp](https://github.com/xsharp)).
 
