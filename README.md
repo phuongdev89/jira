@@ -6,7 +6,7 @@
 
 
 + Long Term Support Version: v9.12.10
-+ Latest Version: v9.16.1
++ Latest Version: v9.17.0
 + [The new way](https://github.com/haxqer/jira/tree/build-your-own) of use allows you to conveniently upgrade and modify parameters on your own, and it offers convenient support for HTTPS (thanks to [xsharp](https://github.com/xsharp)).
 
 + [Arm Version](https://github.com/haxqer/jira#arm)
@@ -53,7 +53,7 @@ passwd=123456
 - start jira
 
 ```
-docker volume create jira_home_data && docker network create jira-network && docker run -p 8080:8080 -v jira_home_data:/var/jira --network jira-network --name jira-srv -e TZ='Asia/Shanghai' haxqer/jira:9.16.1
+docker volume create jira_home_data && docker network create jira-network && docker run -p 8080:8080 -v jira_home_data:/var/jira --network jira-network --name jira-srv -e TZ='Asia/Shanghai' haxqer/jira:9.17.0
 ```
 
 - config your own db:
