@@ -7,7 +7,7 @@
 
 [README](README.md) | [中文文档](README_zh.md)
 
-+ Long Term Support Version: v9.12.10
++ Long Term Support Version: v9.12.11
 + Latest Version: v9.17.0
 + [新的使用方式](https://github.com/haxqer/jira/tree/build-your-own) ，您可方便自行升级、修改各参数，支持https (感谢 [xsharp](https://github.com/xsharp)).
 + [Arm Version](https://github.com/haxqer/jira/blob/rm/README_zh.md#arm)
