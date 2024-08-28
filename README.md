@@ -7,6 +7,7 @@
 
 + Long Term Support Version(arm64&amd64): v9.12.12
 + Latest Version(arm64&amd64): v9.17.2
++ Beta Version(arm64&amd64): v10.0.0
 + [The new way](https://github.com/haxqer/jira/tree/build-your-own) of use allows you to conveniently upgrade and modify parameters on your own, and it offers convenient support for HTTPS (thanks to [xsharp](https://github.com/xsharp)).
 
 New Confluence/Jira releases support only Data Center licenses. To generate a Data Center licenses, add the `-d` parameter.
@@ -88,19 +89,6 @@ docker exec jira-srv java -jar /var/agent/atlassian-agent.jar \
 
 4. Paste your license
 
-## How to upgrade
-
-```shell
-cd jira && git pull
-docker pull haxqer/jira:rm && docker-compose stop
-docker-compose rm
-```
-
-enter `y`, then start server
-
-```shell
-docker-compose up -d
-```
 
 ## Hack Jira Service Management(jsm) Plugin
 

@@ -7,8 +7,9 @@
 
 [README](README.md) | [中文文档](README_zh.md)
 
-+ Long Term Support Version(支持arm64&amd64): v9.12.12
-+ Latest Version(支持arm64&amd64): v9.17.2
++ Long Term Support Version(支持 arm64&amd64): v9.12.12
++ Latest Version(支持 arm64&amd64): v9.17.2
++ + Beta Version(支持 arm64&amd64): v10.0.0
 + [新的使用方式](https://github.com/haxqer/jira/tree/build-your-own) ，您可方便自行升级、修改各参数，支持https (感谢 [xsharp](https://github.com/xsharp)).
 
 新的Confluence/Jira版本仅支持数据中心许可证
@@ -104,22 +105,6 @@ docker exec jira-srv java -jar /var/agent/atlassian-agent.jar \
 ```
 
 4. 最后粘贴生成的 licence
-
-
-
-## 如何升级
-
-```shell
-cd jira && git pull
-docker pull haxqer/jira:rm && docker-compose stop
-docker-compose rm
-```
-
-输入 `y` 之后重启 jira:
-
-```shell
-docker-compose up -d
-```
 
 
 ## 破解 Jira Service Management(jsm)
