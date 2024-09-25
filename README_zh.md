@@ -8,7 +8,7 @@
 [README](README.md) | [中文文档](README_zh.md)
 
 + Long Term Support Version(支持 arm64&amd64): v9.12.13
-+ Latest Version(支持 arm64&amd64): v9.17.2
++ Latest Version(支持 arm64&amd64): v9.17.3
 + Beta Version(支持 arm64&amd64): v10.0.1
 + [新的使用方式](https://github.com/haxqer/jira/tree/build-your-own) ，您可方便自行升级、修改各参数，支持https (感谢 [xsharp](https://github.com/xsharp)).
 
@@ -54,7 +54,7 @@
 - 启动 jira
 
 ```
-    docker volume create jira_home_data && docker network create jira-network && docker run -p 8080:8080 -v jira_home_data:/var/jira --network jira-network --name jira-srv -e TZ='Asia/Shanghai' haxqer/jira:9.17.2
+    docker volume create jira_home_data && docker network create jira-network && docker run -p 8080:8080 -v jira_home_data:/var/jira --network jira-network --name jira-srv -e TZ='Asia/Shanghai' haxqer/jira:9.17.3
 ```
 
 - 然后配置你的数据库
