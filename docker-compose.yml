@@ -1,14 +1,9 @@
-version: '3.4'
 services:
   jira:
     build: .
     container_name: jira-srv
     env_file:
       - .env
-    environment:
-#      - JVM_MINIMUM_MEMORY=1g
-#      - JVM_MAXIMUM_MEMORY=12g
-#      - JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=8g'
     depends_on:
       - mysql
     ports:
@@ -20,11 +15,11 @@ services:
       - network-bridge
 
   mysql:
-    image: mariadb:10.6
+    image: mysql:8.0
     container_name: mysql-jira
     env_file:
       - .env
-    command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_bin']
     volumes:
       - ./storage/mysql:/var/lib/mysql
     restart: always
@@ -46,7 +41,7 @@ services:
       - PMA_ARBITRARY=1
       - UPLOAD_LIMIT=100M
     networks:
-      network-bridge
+      - network-bridge
 
 networks:
   network-bridge:

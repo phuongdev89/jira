@@ -16,10 +16,11 @@ default port: `8080`
 ## requirement
 - docker: 17.09.0+
 - docker-compose: 1.24.0+
+- do not update `jira software` or `jira core`
 
 ## How to run with docker-compose
 
-- start jira & mysql
+- clone jira
 
 ```
 git clone https://github.com/phuongdev89/jira.git && cd jira && git checkout release
@@ -30,8 +31,15 @@ git clone https://github.com/phuongdev89/jira.git && cd jira && git checkout rel
 ```
 docker-compose up -d
 ```
-
-- default db(mariadb:10.6) configure, edit in `.env`
+## Setup Jira
+1. choose `I'll set it up myself`
+2. Database setup `My Own Database`:
+ - driver: `Mysql 8.0`
+ - host: `mysql-jira`
+ - port: `3306`
+ - database: `jira`
+ - username: `root`
+ - password: `123456`
 
 ## How to hack jira
 
