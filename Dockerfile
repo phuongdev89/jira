@@ -1,6 +1,6 @@
 FROM openjdk:11-bullseye
 
-LABEL maintainer="haxqer <haxqer666@gmail.com>" version="9.17.4"
+LABEL maintainer="phuongdev89 <phuongdev89@gmail.com>" version="9.17.4"
 
 ARG JIRA_VERSION=9.17.4
 # Production: jira-software jira-core
@@ -20,9 +20,9 @@ ENV JIRA_USER=jira \
 
 ENV JAVA_OPTS="-javaagent:${AGENT_PATH}/${AGENT_FILENAME} ${JAVA_OPTS}"
 
-RUN mkdir -p ${JIRA_INSTALL} ${JIRA_HOME} ${AGENT_PATH} \
-&& curl -o ${AGENT_PATH}/${AGENT_FILENAME}  https://github.com/haxqer/jira/releases/download/v${AGENT_VERSION}/atlassian-agent.jar -L \
-&& curl -o /tmp/atlassian.tar.gz https://product-downloads.atlassian.com/software/jira/downloads/atlassian-${JIRA_PRODUCT}-${JIRA_VERSION}.tar.gz -L \
+RUN mkdir -p ${JIRA_INSTALL} ${JIRA_HOME} ${AGENT_PATH}
+COPY ./agent/atlassian-agent.jar ${AGENT_PATH}/${AGENT_FILENAME}
+RUN curl -o /tmp/atlassian.tar.gz https://product-downloads.atlassian.com/software/jira/downloads/atlassian-${JIRA_PRODUCT}-${JIRA_VERSION}.tar.gz -L \
 && tar xzf /tmp/atlassian.tar.gz -C ${JIRA_INSTALL}/ --strip-components 1 \
 && rm -f /tmp/atlassian.tar.gz \
 && curl -o ${JIRA_INSTALL}/lib/mysql-connector-java-${MYSQL_DRIVER_VERSION}.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/${MYSQL_DRIVER_VERSION}/mysql-connector-java-${MYSQL_DRIVER_VERSION}.jar -L \

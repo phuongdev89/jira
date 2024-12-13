@@ -1,8 +1,7 @@
-[![docker pulls](https://img.shields.io/docker/pulls/haxqer/jira.svg)](https://hub.docker.com/r/haxqer/jira/)  [![docker stars](https://img.shields.io/docker/stars/haxqer/jira.svg)](https://hub.docker.com/r/haxqer/jira/) [![image metadata](https://images.microbadger.com/badges/image/haxqer/jira.svg)](https://microbadger.com/images/haxqer/jira "haxqer/jira image metadata")
 
 # jira
 
-[README](README.md) | [中文文档](README_zh.md)
+[README](README.md)
 
 
 + Long Term Support Version(arm64&amd64): v9.12.14
@@ -23,11 +22,7 @@ default port: `8080`
 - start jira & mysql
 
 ```
-git clone https://github.com/haxqer/jira.git \
-    && cd jira \
-    && git checkout rm \
-    && docker-compose pull \
-    && docker-compose up
+git clone https://github.com/phuongdev89/jira.git && cd jira && git checkout release
 ```
 
 - start jira & mysql daemon
@@ -36,38 +31,15 @@ git clone https://github.com/haxqer/jira.git \
 docker-compose up -d
 ```
 
-- default db(mysql8.0) configure:
-
-```bash
-driver=mysql8.0
-host=mysql-jira
-port=3306
-db=jira
-user=root
-passwd=123456
-```
-
-## How to run with docker
-
-- start jira
-
-```
-docker volume create jira_home_data && docker network create jira-network && docker run -p 8080:8080 -v jira_home_data:/var/jira --network jira-network --name jira-srv -e TZ='Asia/Shanghai' haxqer/jira:9.17.4
-```
-
-- config your own db:
-
+- default db(mariadb:10.6) configure, edit in `.env`
 
 ## How to hack jira
 
+Run in docker `jira-srv`
+
 ```
-docker exec jira-srv java -jar /var/agent/atlassian-agent.jar \
-    -d \
-    -p jira \
-    -m Hello@world.com \
-    -n Hello@world.com \
-    -o your-org \
-    -s you-server-id-xxxx
+export SERVER_ID=server_id_that_showed_when_installed
+java -jar /var/agent/atlassian-agent.jar -d -p jira -m $ACTIVE_MAIL -n $ACTIVE_NAME -o $ACTIVE_ORG -s $SERVER_ID
 ```
 
 ## How to hack jira plugin
@@ -78,13 +50,8 @@ docker exec jira-srv java -jar /var/agent/atlassian-agent.jar \
 3. Execute :
 
 ```
-docker exec jira-srv java -jar /var/agent/atlassian-agent.jar \
-    -d \
-    -p eu.softwareplant.biggantt \
-    -m Hello@world.com \
-    -n Hello@world.com \
-    -o your-org \
-    -s you-server-id-xxxx
+export SERVER_ID=server_id_that_showed_when_installed
+java -jar /var/agent/atlassian-agent.jar -d -p eu.softwareplant.biggantt -m $ACTIVE_MAIL -n $ACTIVE_NAME -o $ACTIVE_ORG -s $SERVER_ID
 ```
 
 4. Paste your license
@@ -96,12 +63,7 @@ Thanks to:
 + [d1m0nstr](https://github.com/d1m0nstr) for [Jira Service Management](https://github.com/haxqer/jira/issues/11)
 
 ```
-docker exec jira-srv java -jar /var/agent/atlassian-agent.jar \
-    -d \
-    -p jsm \
-    -m Hello@world.com \
-    -n Hello@world.com \
-    -o your-org/ \
-    -s you-server-id
+export SERVER_ID=server_id_that_showed_when_installed
+java -jar /var/agent/atlassian-agent.jar -d -p jsm -m $ACTIVE_MAIL -n $ACTIVE_NAME -o $ACTIVE_ORG -s $SERVER_ID
 ```
 

@@ -1,10 +1,11 @@
 version: '3.4'
 services:
   jira:
-    image: haxqer/jira:9.17.4
+    build: .
     container_name: jira-srv
+    env_file:
+      - .env
     environment:
-      - TZ=Asia/Shanghai
 #      - JVM_MINIMUM_MEMORY=1g
 #      - JVM_MAXIMUM_MEMORY=12g
 #      - JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=8g'
@@ -13,35 +14,40 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - home_data:/var/jira
+      - ./storage/jira:/var/jira
     restart: always
     networks:
       - network-bridge
 
   mysql:
-    image: mysql:8.0
+    image: mariadb:10.6
     container_name: mysql-jira
-    environment:
-      - TZ=Asia/Shanghai
-      - MYSQL_DATABASE=jira
-      - MYSQL_ROOT_PASSWORD=123456
-      - MYSQL_USER=jira
-      - MYSQL_PASSWORD=123123
-    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_bin']
-#    ports:
-#      - "13306:3306"
+    env_file:
+      - .env
+    command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
     volumes:
-      - mysql_data:/var/lib/mysql
+      - ./storage/mysql:/var/lib/mysql
     restart: always
     networks:
       - network-bridge
 
+  phpmyadmin:
+    container_name: phpmyadmin-jira
+    env_file:
+      - .env
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8001:80"
+    environment:
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - PMA_ARBITRARY=1
+      - UPLOAD_LIMIT=100M
+    networks:
+      network-bridge
+
 networks:
   network-bridge:
     driver: bridge
-
-volumes:
-  home_data:
-    external: false
-  mysql_data:
-    external: false
